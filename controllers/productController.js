@@ -1,6 +1,7 @@
 const slugify = require("slugify");
 
 const Product = require("../models/productModel");
+const CategoryModel = require('../models/categoryModel');
 const fs = require("fs");
 
 exports.createProductController = async (req, res) => {
@@ -285,4 +286,55 @@ exports.searchProductController = async (req, res) => {
 
 
 
+//similar products
+exports.realtedProductController = async(req,res)=>{
+  try {
+    const {pid,cid} = req.params;
+    const products = await Product.find({
+      category:cid,
+      _id:{$ne:pid}
+    }).select("-photo").limit(3).populate("category");
 
+    res.status(200).send({
+      success:true,
+      products
+    })
+    
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error in search Product API",
+      error,
+    });
+  }
+}
+
+
+//similar products
+exports.productCategoryController = async(req,res)=>{
+  try {
+    const {slug} = req.params;
+    const category = await CategoryModel.findOne({slug:slug});
+    const products = await Product.find({category}).populate('category').select("-photo");
+    res.status(200).send({
+      success:true,
+      category,
+      products
+    })
+
+
+    res.status(200).send({
+      success:true,
+      products
+    })
+    
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error in search Product  category API",
+      error,
+    });
+  }
+}

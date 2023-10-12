@@ -1,6 +1,6 @@
 const express = require('express');
 const { requireSignIn, isAdmin } = require('../middleware/authMiddleware');
-const { createProductController, getProductsController, getSingleproducsController, productPhotoController, deleteProductController, updateProductController, productFiltersController,productCountController, productListController, searchProductController } = require('../controllers/productController');
+const { createProductController, getProductsController, getSingleproducsController, productPhotoController, deleteProductController, updateProductController, productFiltersController,productCountController, productListController, searchProductController, realtedProductController, productCategoryController } = require('../controllers/productController');
 const formidable = require('express-formidable');
 
 const router = express.Router();
@@ -63,6 +63,14 @@ router.get('/product-list/:page',productListController)
 
 //Search Product
 router.get("/search/:keyword",searchProductController)
+
+//Similar Product
+router.get("/related-product/:pid/:cid",realtedProductController)
+
+
+
+//category wise product
+router.get("/product-category/:slug",productCategoryController)
 
 
 

@@ -41,7 +41,7 @@ function Products() {
           </div>
           <div className="col-md-9">
             <h1 className="text-center">App Products List</h1>
-            <div className="d-flex ">
+            <div className="d-flex flex-wrap mt-4">
               {products?.map((elem) => (
                 
                   <Link to={`/dashboard/admin/product/${elem.slug}`} key={elem._id} className="product-link">
@@ -58,10 +58,40 @@ function Products() {
                         </p>
                       </div>
                     </div>
-                  </Link>
-                
+                  </Link> 
               ))}
             </div>
+
+            {/* <div className="d-flex flex-wrap mt-4">
+              {values?.results.map((elem) => (
+                <div
+                  className="card m-2"
+                  style={{ width: "18rem" }}
+                  key={elem._id}
+                >
+                  <img
+                    src={`http://localhost:8080/api/v1/product/product-photo/${elem._id}`}
+                    className="card-img-top"
+                    alt={elem.name}
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title">{elem.name}</h5>
+                    <p className="card-text">$ {elem.price}</p>
+                    <p className="card-text">
+                      {elem.description.substring(0, 30)}
+                    </p>
+                    <button className="btn btn-primary ms-1">
+                      More Details
+                    </button>
+                    <button className="btn btn-secondary ms-1">
+                      ADD To Cart
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div> */}
+
+
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
-import axios from "axios";
-import { useState, useContext, createContext, useEffect } from "react";
-// import { json } from "react-router-dom";
+
+import { useState, useContext, createContext } from "react";
 
 const SearchContext = createContext();
 
@@ -11,10 +10,6 @@ const SearchProvider = ({ children }) => {
     results:[],
   })
 
-
-
-
-  
 
   return (
     <SearchContext.Provider value={[auth, setAuth]}>
